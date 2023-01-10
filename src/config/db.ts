@@ -2,17 +2,18 @@ import path from "path";
 import { Sequelize } from "sequelize-typescript";
 
 import dotenv from 'dotenv';
+import User from "../user/user.model";
 
 dotenv.config();
 
 const databaseConfig = {
   databaseUser: process.env.POSTGRES_USER ?? "postgres",
-  databasePassword: process.env.POSTGRES_PASSWORD ?? "carefreeav",
+  databasePassword: process.env.POSTGRES_PASSWORD ?? "root123",
   databaseName: process.env.POSTGRES_DB ?? "carefreeav",
   databaseHost: process.env.POSTGRES_HOST ?? "localhost",
 }
 
-console.log(databaseConfig, 'databaseConfig');
+console.log(databaseConfig, 'databaseConfig1');
 const sequelize = new Sequelize({
   database: databaseConfig.databaseName,
   dialect: "postgres",
@@ -21,8 +22,10 @@ const sequelize = new Sequelize({
   logging: false,
   repositoryMode: true,
   host: databaseConfig.databaseHost,
+  models: [
+    User
+  ]
 });
 
-console.log(sequelize, 'sequelize');
 
 export default sequelize;

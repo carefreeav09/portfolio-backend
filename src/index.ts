@@ -2,9 +2,9 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import sequelize from './src/config/db';
+import sequelize from './config/db';
 
-import router from './src/routes/routes';
+import router from './routes/routes';
 
 dotenv.config();
 
@@ -22,13 +22,12 @@ console.log(port, 'port');
 (async function () {
   try {
     console.log('⚡️⚡️⚡️ Trying to authenticate connection ⚡️⚡️⚡️');
-
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
 
 
     await sequelize.sync({
-      force: false,
+      force: true,
     });
 
     app.listen(process.env.PORT || 5000, () => {
