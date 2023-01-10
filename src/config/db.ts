@@ -13,7 +13,6 @@ const databaseConfig = {
   databaseHost: process.env.POSTGRES_HOST ?? "db",
 }
 
-console.log(databaseConfig, 'databaseConfig1');
 const sequelize = new Sequelize({
   database: databaseConfig.databaseName,
   dialect: "postgres",

@@ -5,7 +5,7 @@ import userRouter from '../user/user.router';
 const router = express.Router();
 
 router.use("/status", (req: express.Request, res: express.Response) => {
-  return res.status(200).json({ MSG: "SUCCESS" });
+  return res.status(200).json({ MSG: "NO" });
 });
 
 router.use("/user", userRouter);

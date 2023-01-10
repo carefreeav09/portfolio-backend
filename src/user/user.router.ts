@@ -1,9 +1,13 @@
 import express from 'express';
+import UserController from './user.controller';
 
 const userRouter = express.Router();
+const userController = new UserController();
 
-userRouter.use("/", (req: express.Request, res: express.Response) => {
-  return res.status(200).json({ MSG: "USER ROUTE SUCCESS" });
-});
+userRouter.get("/:id", userController.findUserById);
+
+userRouter.get("/", userController.getAllUsers);
+
+userRouter.post("/", userController.createUser);
 
 export default userRouter;
