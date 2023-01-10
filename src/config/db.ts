@@ -7,10 +7,10 @@ import User from "../user/user.model";
 dotenv.config();
 
 const databaseConfig = {
-  databaseUser: process.env.POSTGRES_USER ?? "postgres",
-  databasePassword: process.env.POSTGRES_PASSWORD ?? "root123",
-  databaseName: process.env.POSTGRES_DB ?? "carefreeav",
-  databaseHost: process.env.POSTGRES_HOST ?? "db",
+  databaseUser: process.env.POSTGRES_USER,
+  databasePassword: process.env.POSTGRES_PASSWORD,
+  databaseName: process.env.POSTGRES_DB,
+  databaseHost: process.env.POSTGRES_HOST
 }
 
 const sequelize = new Sequelize({
