@@ -1,4 +1,4 @@
-import { Model, AllowNull, Column, DataType, Table, Unique, HasOne } from "sequelize-typescript";
+import { Model, AllowNull, Column, DataType, Table, Unique, HasOne, Default } from "sequelize-typescript";
 
 type USER_TYPE = "admin" | "user";
 
@@ -18,7 +18,14 @@ class User extends Model {
   @Column
   password: string;
 
-  @Column
+
+  @Default("user")
+  @Column(
+    DataType.ENUM(
+      "admin",
+      "user"
+    )
+  )
   type: USER_TYPE;
   default: USER_TYPE = "user";
 }

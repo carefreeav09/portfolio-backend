@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -22,9 +22,9 @@ const port = process.env.PORT;
 
     await sequelize.authenticate();
     await sequelize.sync({
-      force: true,
+      force: false,
     });
- 
+
     console.log('⚡️⚡️⚡️ Database Connected ⚡️⚡️⚡️');
     app.listen(process.env.PORT || 5000, () => {
       console.log(`⚡️⚡️⚡️ Server is up and running at http//localhost:${port}`);

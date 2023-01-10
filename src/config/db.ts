@@ -3,6 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 
 import dotenv from 'dotenv';
 import User from "../user/user.model";
+import Posts from '../posts/post.model';
 
 dotenv.config();
 
@@ -22,7 +23,8 @@ const sequelize = new Sequelize({
   repositoryMode: true,
   host: databaseConfig.databaseHost,
   models: [
-    User
+    User,
+    Posts
   ]
 });
 

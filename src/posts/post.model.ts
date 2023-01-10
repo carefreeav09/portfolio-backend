@@ -1,8 +1,6 @@
-import { Model, Column, Table, Default } from "sequelize-typescript";
-
+import { Model, Column, Table, Default, DataType } from "sequelize-typescript";
 
 type PROJECT_STATUS = 'in-progress' | 'completed' | 'on-hold' | 'cancelled';
-
 export interface IPost {
   [x: string]: any;
   name: string;
@@ -24,21 +22,28 @@ class Posts extends Model {
   @Column
   name: string;
 
-  @Column
+  @Column({ type: DataType.TEXT })
   description: string;
 
-  @Column
+  @Column({ type: DataType.ARRAY(DataType.STRING) })
   technologiesUsed: string[];
 
-  @Column
+  @Column(
+    DataType.ENUM(
+      "in-progress",
+      "completed",
+      "on-hold",
+      "cancelled"
+    )
+  )
   projectStatus: PROJECT_STATUS;
 
-  @Column
   @Default("Lead Developer")
+  @Column
   role: string;
 
-  @Column
   @Default(false)
+  @Column
   isApp: boolean;
 
   @Column

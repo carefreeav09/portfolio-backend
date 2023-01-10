@@ -1,4 +1,3 @@
-
 import User, { IUser } from './user.model';
 import { Repository } from "sequelize-typescript";
 
