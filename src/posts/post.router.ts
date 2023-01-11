@@ -13,4 +13,6 @@ postRouter.get("/", postController.getAllPosts);
 
 postRouter.post("/", authUser, validate(postSchema), postController.createPost);
 
+postRouter.patch("/:id", validate(postSchema), postController.updatePost);
+
 export default postRouter;

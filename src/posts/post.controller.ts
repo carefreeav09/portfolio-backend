@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import Posts from './index';
 
 import { IPost } from './post.model';
+import { success } from '../utils/helpers/responseHelper';
 
 export default class PostController {
   async getAllPosts(
@@ -11,7 +12,11 @@ export default class PostController {
   ) {
     try {
       const posts: IPost[] = await Posts.getAllPosts();
-      res.status(200).json(posts);
+      res.status(200).json(success(
+        'Posts',
+        posts,
+        res.statusCode
+      ));
     }
     catch (err) {
       next(err);
@@ -27,7 +32,11 @@ export default class PostController {
       const post: IPost | null = await Posts.findPostById(
         Number(req.params.id)
       );
-      res.status(200).json(post);
+      res.status(200).json(success(
+        'Post Found',
+        post,
+        res.statusCode
+      ));
     }
     catch (err) {
       next(err);
@@ -40,8 +49,36 @@ export default class PostController {
     next: NextFunction
   ) {
     try {
-      const user: IPost = await Posts.createPost(req.body);
-      res.status(201).json(user);
+      const post: IPost = await Posts.createPost(req.body);
+      res.status(201).json(
+        success(
+          'Post Created successfully',
+          post,
+          res.statusCode
+        )
+      );
+    }
+    catch (err) {
+      next(err);
+    }
+  }
+
+  async updatePost(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      const post: any = await Posts.updatePost(req.body);
+      return res
+        .status(200)
+        .json(
+          success(
+            'Post updated successfully',
+            post,
+            res.statusCode
+          )
+        );
     }
     catch (err) {
       next(err);

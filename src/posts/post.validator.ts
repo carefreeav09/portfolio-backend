@@ -22,6 +22,7 @@ const postSchema = z
     startDate: z.date().optional(),
     endDate: z.date().optional(),
     image: z.string().optional(),
+    id: z.number().optional(),
   })
 
 
