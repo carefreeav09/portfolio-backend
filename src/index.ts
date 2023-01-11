@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import sequelize from './config/db';
 
 import router from './routes/routes';
+import logger from './utils/logger';
 
 dotenv.config();
 
@@ -26,14 +27,16 @@ const port = process.env.PORT;
     });
 
     console.log('⚡️⚡️⚡️ Database Connected ⚡️⚡️⚡️');
-    app.listen(process.env.PORT || 5000, () => {
-      console.log(`⚡️⚡️⚡️ Server is up and running at http//localhost:${port}`);
+    app.listen(port || 5000, () => {
+      logger.info(
+        `⚡️⚡️⚡️ Express running at port: ${port} -> http://localhost:${port} ⚡️⚡️⚡️`
+      );
     })
       .on("error", (e) => {
-        console.log(e, 'error');
+        logger.error(e);
       })
   }
   catch (error) {
-    console.error('Unable to connect to the database:', error);
+    logger.error(`Unable to connect to Database: ${error}`);
   }
 })();
