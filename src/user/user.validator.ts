@@ -21,7 +21,8 @@ const userSchema = z
     password: z.string({
       required_error: "Password is required",
     }),
-    role: z.enum(["user", "admin"])
+    role: z.enum(["user", "admin"]),
+    media: z.string()
   })
 
 

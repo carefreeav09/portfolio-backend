@@ -28,6 +28,9 @@ class User extends Model {
   )
   type: USER_TYPE;
   default: USER_TYPE = "user";
+
+  @Column
+  media: string;
 }
 
 export default User;

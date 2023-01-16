@@ -68,8 +68,9 @@ export default class PostController {
     res: Response,
     next: NextFunction
   ) {
+    const id = Number(req.params.id);
     try {
-      const post: any = await Posts.updatePost(req.body);
+      const post: any = await Posts.updatePost(req.body, id);
       return res
         .status(200)
         .json(

@@ -6,7 +6,7 @@ export interface IPostServices {
   getAllPosts(): Promise<IPost[]>;
   findPostById(id: number): Promise<IPost | null>;
   createPost(data: IPost): Promise<IPost>;
-  updatePost: (data: IPost) => Promise<any>;
+  updatePost: (data: IPost, id: number) => Promise<any>;
 }
 
 export default class PostService implements IPostServices {
@@ -30,15 +30,7 @@ export default class PostService implements IPostServices {
     return (await this._model.create(data)).get({ plain: true });
   }
 
-  async updatePost(data: any) {
-    const { id } = data;
-
-    if (!id) {
-      const error: any = new Error("No id provided");
-      error.code = 404;
-      throw error;
-    }
-
+  async updatePost(data: any, id: number) {
     const post = await this._model.findByPk(id);
 
     if (!post) {

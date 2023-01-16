@@ -8,12 +8,12 @@ const postSchema = z
     description: z.string({
       required_error: "Description is required",
     }),
-    technologiesUsed: z.array(z.string()),
+    technologiesUsed: z.array(z.string()).optional(),
     projectStatus: z.enum(["in-progress", "completed", "on-hold", "cancelled"]),
     role: z.string({
       required_error: "Role is required",
     }),
-    isApp: z.boolean({
+    isApp: z.string({
       required_error: "isApp is required",
     }),
     appleLink: z.string().optional(),
